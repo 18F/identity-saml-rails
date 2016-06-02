@@ -79,4 +79,5 @@ Rails.application.configure do
 
   config.x.saml_issuer = 'urn:gov:gsa:SAML:2.0.profiles:sp:sso:dev'
   config.x.idp_url = 'https://upaya-idp-dev.18f.gov/api/saml/auth'
+  config.x.idp_cert_fingerprint = 'E6:12:DC:4D:93:66:02:E0:74:AE:B8:2C:F8:2C:3A:C5:AA:20:3D:60'
 end

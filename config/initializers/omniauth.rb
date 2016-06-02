@@ -8,6 +8,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            :name_identifier_format             => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
            :authn_context                      => "http://idmanagement.gov/ns/assurance/loa/1",
            :allowed_clock_drift                => 60,
+           :certificate                        => File.read('config/demo_sp.crt'),
+           :private_key                        => File.read('config/demo_sp.key'),
            :security                           => {:authn_requests_signed => true,
                                                    :embed_sign            => true,
                                                    :digest_method         => "http://www.w3.org/2001/04/xmlenc#sha256",
