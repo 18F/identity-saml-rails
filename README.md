@@ -1,5 +1,6 @@
 Identity-SP
 ===========
+[![security](https://hakiri.io/github/18F/identity-sp/master.svg)](https://hakiri.io/github/18F/identity-sp/master)
 
 Mock service provider (SP) app for validating IdP and IdV APIs.
 
