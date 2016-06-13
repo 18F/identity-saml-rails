@@ -2,5 +2,6 @@
 /log/*
 !/log/.keep
 /tmp
-/config/demo_sp.key
 .byebug_history
+.rspec
+/certs/saml.crt

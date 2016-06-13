@@ -10,11 +10,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["devise.saml_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
+      flash[:error] = 'Sorry, we could not authenticate you. Please try again later.'
     end
   end
 
   def failure
     redirect_to root_path
-    set_flash_message(:alert, :failure, :kind => "IdP") if is_navigational_format?
+    flash[:error] = 'Sorry, we could not authenticate you. Please try again later.'
   end
 end
