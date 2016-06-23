@@ -4,6 +4,7 @@ AllCops:
     - '**/Rakefile'
   Exclude:
     - 'bin/**/*'
+    - 'db/schema.rb'
   UseCache: true
 
 Metrics/AbcSize:
