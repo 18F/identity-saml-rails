@@ -1,0 +1,20 @@
+addons:
+  code_climate:
+    repo_token:
+      secure: 'iDMzM/Z77SmyFdiBhSdTKRdDnICqwG9ysGMkuJHhZveDZpSDaVwG5g3lMLdqnyX700jOMRPKT7QbOP2hFJJ6fcDFRP4Q9X3orJ8YCB4eS26k1rwFMWIKmiHlJjdC42X+ODZwHTlftdCxwIOzRtxr3M8+PQhtX42VZhyUqcngsoQhiXvtZTVU17MaGirNjFr8jzf5dNx0gRCXaxpUHE/cwUCtmudVBfOzNPMfuQqSXazQ5ZJTsM1RXhOL+8o/S2vvtPkJdtbcBtLwiJ8YMYotFZ16kd7sUhY8ha8DuJ2twu0V9Q42y6n1PcKwh3+Oa5vXeCFL47YYIVAZOhlIYOSwSdcytCb1AeVI060E2PX6m+EDo31/avFQzH8JSGB5htOq3iI7uOEZNwekSfVUj8zT1tyyyELz+hxR/+AVPQ/eZHlKa7yOXc6BLt24hiNoHQ+Gbww6V+l+ioaFPHgfpizxqabnKQeA3o72hpuyVSjMNLc0vOn1aINgwgb6Hpt27QTcJ2SyoJsp/jH1kXRUtY4O2EJpwabQRZ3dXXxW0m8MEhxkF643nP3DMSr5Po9JWfeENWR1L4TVMLY67NBAbtTkHTuiCm+mPr6FvNzC5ie4PgrakhoQEYo7bC9SJPz0Oa1mG0KwWV6wS2MRaHgySdh4q1VoxZZxiYQ6zxQ8G5UwS14='
+before_script:
+  - cp certs/saml.crt.example certs/saml.crt
+  - bin/rake db:setup --trace
+  - bin/rake assets:precompile
+bundler_args: "--deployment --jobs=3 --retry=3 --without deploy development doc"
+cache: bundler
+language: ruby
+matrix:
+  fast_finish: true
+notifications:
+  email: false
+rvm:
+  - ruby-2.3.1
+sudo: false
+script:
+  - bundle exec rspec
