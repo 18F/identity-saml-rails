@@ -5,3 +5,4 @@
 .byebug_history
 .rspec
 /certs/saml.crt
+/db/*.sqlite3
