@@ -4,11 +4,12 @@ RSpec.describe User, type: :model do
   describe 'from_omniauth' do
     describe 'for a user that already exists' do
       before do
-        @user = User.new
-        @user.provider = 'test_provider'
-        @user.uid = 'test_uid'
-        @user.email = 'email@example.com'
-        @user.password = 'abcdef'
+        @user = User.new(
+          provider: 'test_provider',
+          uid: 'test_uid',
+          email: 'email@example.com'
+        )
+
         @user.save!
       end
 
