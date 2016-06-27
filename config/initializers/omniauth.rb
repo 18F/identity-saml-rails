@@ -5,7 +5,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     assertion_consumer_service_binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
     issuer: Rails.application.secrets.saml_issuer,
     idp_sso_target_url: Rails.application.secrets.idp_url,
-    idp_cert: File.read("#{Rails.root}/certs/saml.crt"),
+    idp_cert_fingerprint: '8B:D5:C2:E8:9A:2B:CE:B7:4B:95:50:BA:16:79:05:27:17:D1:D3:67',
     name_identifier_format: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
     authn_context: 'http://idmanagement.gov/ns/assurance/loa/1',
     allowed_clock_drift: 60,
