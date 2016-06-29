@@ -1,7 +1,6 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider(
     :saml,
-    assertion_consumer_service_url: 'http://localhost:3003/auth/saml/callback',
     assertion_consumer_service_binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
     issuer: Rails.application.secrets.saml_issuer,
     idp_sso_target_url: Rails.application.secrets.idp_url,

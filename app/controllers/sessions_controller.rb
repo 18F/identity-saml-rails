@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(request.env['omniauth.auth'])
-
     session[:user_id] = user.id
 
     redirect_to(
@@ -13,8 +12,8 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    flash[:error] = t('omniauth_callbacks.failure', reason: failure_message)
-    redirect_to root_url
+    flash[:alert] = t('omniauth_callbacks.failure', reason: failure_message)
+    redirect_to failure_url
   end
 
   private

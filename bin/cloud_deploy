@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+	echo 'Usage: cloud_deploy [environment]'
+	exit 1
+fi
+
+if [ $1 != 'dev' -a $1 != 'demo' ]
+then
+	echo 'you must specify either dev or demo'
+	exit 1
+fi
+
+cf target -o consumer-identity -s $1
+echo setting up identity-sp-rails-$1
+cp manifest_$1.yml manifest.yml
+cf set-env identity-sp-rails-$1 SAML_ENV $1
+cf restage identity-sp-rails-$1
+cf push identity-sp-rails-$1
+rm manifest.yml
