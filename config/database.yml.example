@@ -1,6 +1,7 @@
 postgresql: &postgresql
   adapter: postgresql
   encoding: utf8
+  database: id-sp-rails_<%= Rails.env %>
   port: 5432
 
 defaults: &defaults
@@ -12,12 +13,9 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: id-sp-rails_<%= Rails.env %>
 
 test:
   <<: *defaults
-  database: id-sp-rails_<%= Rails.env %>
 
 production:
   <<: *defaults
-  database: id-sp-rails_production-<%= ENV['SAML_ENV'] %>

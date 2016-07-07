@@ -1,0 +1,9 @@
+---
+applications:
+- name: identity-sp-rails-dev
+  memory: 256M
+  instances: 1
+  host: identity-sp-rails-dev
+  domain: apps.cloud.gov
+  services:
+  - id-sp-rails_production-dev

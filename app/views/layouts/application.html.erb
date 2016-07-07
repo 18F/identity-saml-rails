@@ -6,8 +6,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="bg-darken-1">
-<div class="p2 bg-green white"><%= notice %></div>
-<div class="p2 bg-green white"><%= alert %></div>
+<%- unless notice.nil? %>
+  <div class="p2 bg-green white"><%= notice %></div>
+<%- end %>
+<%- unless alert.nil? %>
+  <div class="p2 bg-red white"><%= alert %></div>
+<%- end %>
 
 <%= yield %>
 
