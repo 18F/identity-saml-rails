@@ -17,6 +17,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.4'
+  gem 'saml_idp'
 end
 
 group :development do
@@ -27,6 +28,8 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', require: nil
+  gem 'sinatra'
+  gem 'webmock'
 end
 
 group :production do

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'failure', to: 'home#failure'
 
   post 'auth/:provider/callback', to: 'sessions#create'
+  post 'auth/:provider/logout', to: 'sessions#destroy'
 end
