@@ -1,0 +1,6 @@
+exclude_paths:
+  - db/migrate
+  - spec/**/*
+
+IrresponsibleModule:
+  enabled: false

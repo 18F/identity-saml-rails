@@ -33,7 +33,9 @@ class SessionsController < ApplicationController
 
   def idp_logout_request
     settings = OneLogin::RubySaml::Settings.new(SAML_SETTINGS)
-    logout_request = OneLogin::RubySaml::SloLogoutrequest.new(params[:SAMLRequest], settings: settings)
+    logout_request = OneLogin::RubySaml::SloLogoutrequest.new(
+      params[:SAMLRequest], settings: settings
+    )
     if logout_request.is_valid?
       Rails.logger.info "IdP initiated Logout for #{logout_request.nameid}"
 
