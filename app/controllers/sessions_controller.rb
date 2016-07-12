@@ -27,33 +27,42 @@ class SessionsController < ApplicationController
 
   private
 
+  def saml_settings
+    @_saml_settings ||= OneLogin::RubySaml::Settings.new(SAML_SETTINGS)
+  end
+
   def failure_message
     env['omniauth.error.type'].to_s.humanize
   end
 
   def idp_logout_request
-    settings = OneLogin::RubySaml::Settings.new(SAML_SETTINGS)
     logout_request = OneLogin::RubySaml::SloLogoutrequest.new(
-      params[:SAMLRequest], settings: settings
+      params[:SAMLRequest],
+      settings: saml_settings
     )
     if logout_request.is_valid?
-      Rails.logger.info "IdP initiated Logout for #{logout_request.nameid}"
-
-      # delete our local session
-      sign_out
-
-      logout_response = OneLogin::RubySaml::SloLogoutresponse.new.create(
-        settings,
-        logout_request.id,
-        nil,
-        RelayState: params[:RelayState]
-      )
-      redirect_to logout_response
+      redirect_to_logout(logout_request)
     else
-      error_msg = "IdP initiated LogoutRequest was not valid: #{logout_request.errors}"
-      Rails.logger.error error_msg
-      render inline: error_msg
+      render_logout_error
     end
+  end
+
+  def redirect_to_logout(logout_request)
+    Rails.logger.info "IdP initiated Logout for #{logout_request.nameid}"
+    sign_out
+    logout_response = OneLogin::RubySaml::SloLogoutresponse.new.create(
+      saml_settings,
+      logout_request.id,
+      nil,
+      RelayState: params[:RelayState]
+    )
+    redirect_to logout_response
+  end
+
+  def render_logout_error(logout_request)
+    error_msg = "IdP initiated LogoutRequest was not valid: #{logout_request.errors}"
+    Rails.logger.error error_msg
+    render inline: error_msg
   end
 
   def sign_out
