@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'db/schema.rb'
+    - 'db/migrate/20160602162432_add_devise_to_users.rb'
   UseCache: true
 
 Metrics/AbcSize:

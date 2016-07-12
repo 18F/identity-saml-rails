@@ -15,10 +15,13 @@ engines:
     exclude_paths:
     - 'spec/**/*'
     - 'db/schema.rb'
-  eslint:
-    enabled: true
   fixme:
     enabled: true
+  reek:
+    enabled: true
+    exclude_paths:
+    - 'spec/**/*'
+    - 'db/migrate/*'
   rubocop:
     enabled: true
   scss-lint:
