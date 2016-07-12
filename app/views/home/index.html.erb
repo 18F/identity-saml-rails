@@ -1,7 +1,13 @@
-<div class="py1 mb3 center">
+<div class="py1 mb3 center" xmlns="http://www.w3.org/1999/html">
   <h2>Please log in to continue.</h2>
-  <%= link_to 'auth/saml' do %>
+  <%= form_tag('auth/saml', method: :get) do %>
+    <div>
       <button type="submit" class="btn btn-primary h3">login.gov →</button>
+    </div>
+    <%= label_tag 'loa_1', 'LOA 1' %>
+    <%= radio_button_tag 'loa', '1', true, class: "btn btn-primary h3" %>
+    <%= label_tag 'loa_3', 'LOA 3' %>
+    <%= radio_button_tag 'loa', '3', class: "btn btn-primary h3" %>
   <% end %>
 </div>
 <div class="clearfix py3 mxn1">

@@ -26,6 +26,12 @@ class SessionsController < ApplicationController
     redirect_to failure_url
   end
 
+  def setup
+    request.env['omniauth.strategy'].options[:authn_context] =
+      "http://idmanagement.gov/ns/assurance/loa/#{params[:loa]}" if params.key?(:loa)
+    render :text => "Omniauth setup phase.", :status => 404
+  end
+
   private
 
   def saml_settings
