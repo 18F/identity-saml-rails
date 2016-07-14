@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   def setup
     request.env['omniauth.strategy'].options[:authn_context] =
       "http://idmanagement.gov/ns/assurance/loa/#{params[:loa]}" if params.key?(:loa)
-    render :text => "Omniauth setup phase.", :status => 404
+    render text: 'Omniauth setup phase.', status: 404
   end
 
   private
