@@ -14,9 +14,10 @@ class SessionsController < ApplicationController
   def destroy
     if params[:SAMLRequest]
       idp_logout_request
+    elsif params[:SAMLResponse]
+      validate_slo_response
     else
-      flash[:alert] = 'SAMLRequest missing'
-      redirect_to failure_url
+      sp_logout_request
     end
   end
 
@@ -33,6 +34,29 @@ class SessionsController < ApplicationController
 
   def failure_message
     env['omniauth.error.type'].to_s.humanize
+  end
+
+  def validate_slo_response
+    slo_response = idp_logout_response
+    if slo_response.validate
+      flash[:notice] = t('omniauth_callbacks.logout_ok')
+      redirect_to root_url
+    else
+      flash[:alert] = t('omniauth_callbacks.logout_fail')
+      redirect_to failure_url
+    end
+  end
+
+  def idp_logout_response
+    OneLogin::RubySaml::Logoutresponse.new(params[:SAMLResponse], saml_settings)
+  end
+
+  def sp_logout_request
+    current_user = User.find(session[:user_id])
+    settings = saml_settings.dup
+    settings.name_identifier_value = current_user.uid
+    logout_request = OneLogin::RubySaml::Logoutrequest.new.create(settings)
+    redirect_to logout_request
   end
 
   def idp_logout_request

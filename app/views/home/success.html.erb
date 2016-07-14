@@ -1,8 +1,6 @@
 <div class="py1 mb3 center">
   <h2>Authentication from Login.gov was successful!</h2>
-  <%= link_to SAML_SETTINGS[:idp_slo_target_url] do %>
-      <button type="submit" class="btn btn-primary h3">logout</button>
-  <% end %>
+  <%= button_to 'Logout', '/auth/saml/logout', class: 'btn btn-primary h3', method: :post %>
 </div>
 <div class="clearfix py3 mxn1">
   <% (0..7).each do |i| %>
