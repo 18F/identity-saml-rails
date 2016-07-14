@@ -13,7 +13,12 @@ class FakeSamlIdp < Sinatra::Base
 
   get '/saml/logout' do
     build_configs
-    logout_request_builder.signed
+    if params[:SAMLRequest]
+      validate_saml_request
+      encode_response(user)
+    else
+      logout_request_builder.signed
+    end
   end
 
   private
@@ -63,15 +68,22 @@ class FakeSamlIdp < Sinatra::Base
       }
 
       config.service_provider.finder = lambda do |_issuer_or_entity_id|
+        sp_cert = OpenSSL::X509::Certificate.new(config.x509_certificate).to_der
         {
-          cert: config.x509_certificate,
-          private_key: config.secret_key
+          cert: sp_cert,
+          fingerprint: OpenSSL::Digest::SHA1.hexdigest(sp_cert),
+          private_key: config.secret_key,
+          assertion_consumer_logout_service_url: 'http://www.example.com/auth/saml/logout'
         }
       end
     end
   end
 
   def user
-    User.new(email: 'fakeuser@example.com', uid: SecureRandom.uuid)
+    if saml_request && saml_request.name_id
+      User.find_by_uid(saml_request.name_id)
+    else
+      User.new(email: 'fakeuser@example.com', uid: SecureRandom.uuid)
+    end
   end
 end

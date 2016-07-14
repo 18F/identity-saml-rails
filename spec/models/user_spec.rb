@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
         auth = OmniAuth::AuthHash.new(provider: 'test_provider',
                                       uid: 'test_uid',
                                       info: {
-                                        email: 'new_email@example.com',
+                                        email: 'email@example.com',
                                         name: 'Name McNameface'
                                       })
         user = nil
