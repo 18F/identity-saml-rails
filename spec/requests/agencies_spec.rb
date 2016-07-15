@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Agency UI integration' do
-  let(:agencies) { %w(uscis ed sba) }
+  let(:agencies) { %w(ed irs sba state treasury uscis) }
 
   it 'has index page' do
     agencies.each do |agency|
