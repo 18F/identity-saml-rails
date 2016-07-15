@@ -1,0 +1,11 @@
+<div class="p2 bg-green white clearfix">
+  <% if current_user %>
+  <form action="/auth/saml/logout" method="POST" class="right sm-show">
+    <button type="submit" class="btn p0 h6 navy">Log out</button>
+  </form>
+  <% end %>
+  <span class="bold caps">Success!</span>
+  <% if current_user %>
+  <span>Your email is <strong><%= current_user.email %></strong></span>
+  <% end %>
+</div>

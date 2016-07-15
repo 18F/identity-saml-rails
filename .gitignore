@@ -4,4 +4,5 @@
 /tmp
 .byebug_history
 .rspec
+.DS_store
 /db/*.sqlite3
