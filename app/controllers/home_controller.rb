@@ -21,13 +21,11 @@ class HomeController < ApplicationController
   end
 
   def try_render_template(template)
-    begin
-      render template, layout: false
-    rescue ActionView::MissingTemplate => _err
-      render file: "#{Rails.root}/public/404.html", status: 404
-    rescue => err
-      raise err # re-throw
-    end
+    render template, layout: false
+  rescue ActionView::MissingTemplate => _err
+    render file: "#{Rails.root}/public/404.html", status: 404
+  rescue => err
+    raise err # re-throw
   end
 
   def current_agency
