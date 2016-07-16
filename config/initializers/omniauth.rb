@@ -13,7 +13,8 @@ SAML_SETTINGS = {
               logout_requests_signed: true,
               embed_sign: true,
               digest_method: 'http://www.w3.org/2001/04/xmlenc#sha256',
-              signature_method: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256' }
+              signature_method: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256' },
+  setup: true
 }.freeze
 
 Rails.application.config.middleware.use OmniAuth::Builder do

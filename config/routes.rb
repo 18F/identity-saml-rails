@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post 'auth/:provider/callback', to: 'sessions#create'
   post 'auth/:provider/logout', to: 'sessions#destroy'
   delete 'auth/:provider/logout', to: 'sessions#destroy'
+  match 'auth/:provider/setup', to: 'sessions#setup', via: [:get, :post]
 end
