@@ -65,9 +65,6 @@
     </div>
   </div>
   <div class="container">
-    <div class="bg-silver py4 bg-cover bg-hero">
-      <div class="sm-show hero-inner"></div>
-    </div>
     <div class="clearfix p2 mxn2 center">
       <div class="sm-col sm-col-4 px2">
         <%= image_tag "uscis/ico-1.png" %>
@@ -85,6 +82,7 @@
         <p>Schedule a free appointment to visit a local USCIS office and get answers on your case</p>
       </div>
     </div>
+    <%= render 'shared/auth_info' %>
   </div>
 </body>
 </html>
