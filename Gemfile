@@ -15,6 +15,9 @@ gem 'turbolinks'
 
 gem 'omniauth-saml'
 
+# unreleased feature via: https://github.com/onelogin/ruby-saml/pull/345
+gem 'ruby-saml', git: 'https://github.com/onelogin/ruby-saml.git', branch: 'master'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -54,6 +54,8 @@ class FakeSamlIdp < Sinatra::Base
         email_address: -> (principal) { principal.email }
       }
 
+      # For now, we are ignoring AuthnContextClassRef and hardcoding the response's
+      # asserted attributes.
       config.attributes = {
         uid: {
           getter: :uid,
