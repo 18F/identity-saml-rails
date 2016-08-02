@@ -27,11 +27,11 @@ May also function as reference Service Provider implementation.
 
 ### Testing
 
-    $ bundle exec rspec
+    $ make test
 
 ### Running
 
-    $ SAML_ENV=local bundle exec rails s
+    $ SAML_ENV=local make run
 
 ### Running (on cloud.gov)
 
