@@ -1,4 +1,4 @@
-<div class="p2 bg-green white clearfix">
+<div class="p2 bg-green white clearfix" xmlns="http://www.w3.org/1999/html">
   <% if current_user %>
   <form action="/auth/saml/logout" method="POST" class="right sm-show">
     <button type="submit" class="btn p0 h6 navy">Log out</button>
@@ -7,5 +7,14 @@
   <span class="bold caps">Success!</span>
   <% if current_user %>
   <span>Your email is <strong><%= current_user.email %></strong></span>
+</div>
+<div class="p2 bg-green white clearfix" xmlns="http://www.w3.org/1999/html">
+  <% unless current_user.first_name.nil? %>
+  <span> Your name is <strong><%= current_user.first_name %> <%= current_user.last_name %></strong></span>
+  <% end %>
+  <% unless current_user.social_security_number.nil? %>
+  <span> Your social security number ends in
+  <strong>###-##-<%= current_user.social_security_number.split(//).last(4).join %> </strong></span>
+  <% end %>
   <% end %>
 </div>
