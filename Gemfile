@@ -18,6 +18,11 @@ gem 'omniauth-saml'
 # unreleased feature via: https://github.com/onelogin/ruby-saml/pull/345
 gem 'ruby-saml', git: 'https://github.com/onelogin/ruby-saml.git', branch: 'master'
 
+group :deploy do
+  gem 'capistrano' # , '~> 3.4'
+  gem 'capistrano-rails' # , '~> 1.1', require: false
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

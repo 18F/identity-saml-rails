@@ -25,6 +25,10 @@ May also function as reference Service Provider implementation.
 
     (see, for reference https://docs.cloud.gov/apps/databases/ and https://docs.cloud.gov/getting-started/one-off-tasks/)
 
+### Deploy to login.gov lower envs
+    $ cap [demo, dev, or tf] deploy
+    $ cap -T # for a list of available capistrano tasks
+
 ### Testing
 
     $ make test
