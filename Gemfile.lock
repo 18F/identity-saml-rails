@@ -87,8 +87,7 @@ GEM
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
     hashie (3.4.4)
-    httparty (0.13.7)
-      json (~> 1.8)
+    httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     json (1.8.3)
@@ -182,7 +181,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
-    saml_idp (0.3.2)
+    saml_idp (0.4.0)
       activesupport
       builder
       httparty
@@ -252,7 +251,7 @@ DEPENDENCIES
   rspec-rails (~> 3.4)
   rubocop
   ruby-saml!
-  saml_idp
+  saml_idp (~> 0.4.0)
   sass-rails (~> 5.0)
   sinatra
   turbolinks
