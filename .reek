@@ -4,3 +4,5 @@ exclude_paths:
 
 IrresponsibleModule:
   enabled: false
+TooManyStatements:
+  max_statements: 6
