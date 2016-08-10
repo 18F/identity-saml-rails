@@ -1,7 +1,4 @@
-<div class="py1 mb3 center">
-  <h2>Authentication from Login.gov was successful!</h2>
-  <%= button_to 'Logout', '/auth/saml/logout', class: 'btn btn-primary h3', method: :post %>
-</div>
+<%= render 'shared/success_banner' %>
 <div class="clearfix py3 mxn1">
   <% (0..7).each do |i| %>
       <div class="sm-col sm-col-6 px1">
