@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   def extra_attributes_from_auth(auth)
     extra_attrs = auth.extra.raw_info
     self.social_security_number = extra_attrs[:ssn]
-    self.phone = extra_attrs[:mobile]
+    self.phone = extra_attrs[:phone]
   end
 end
