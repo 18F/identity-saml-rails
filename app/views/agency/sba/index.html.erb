@@ -27,6 +27,9 @@
     <div class="border-top page-border p1 sm-show">
       <div class="right">
         <form action="/auth/saml" method="GET" class="">
+          <% if params[:loa] %>
+            <%= hidden_field_tag 'loa', params[:loa] %>
+          <% end %>
           <button type="submit" class="btn btn-outline bg-white navy">
             <%= image_tag "login-gov.svg", class: "align-middle", width: "125" %>
           </button>
