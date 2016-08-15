@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
                                       extra: {
                                         raw_info: {
                                           ssn: '123456789',
-                                          mobile: '4155551212'
+                                          phone: '4155551212'
                                         }
                                       })
         user = nil
@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
                                       extra: {
                                         raw_info: {
                                           ssn: '123456789',
-                                          mobile: '4155551212'
+                                          phone: '4155551212'
                                         }
                                       })
         user = nil
@@ -61,7 +61,7 @@ RSpec.describe User, type: :model do
         expect(user.email).to eq(auth.info.email)
         expect(user.first_name).to eq(auth.info.first_name)
         expect(user.last_name).to eq(auth.info.last_name)
-        expect(user.phone).to eq(auth.extra.raw_info.mobile)
+        expect(user.phone).to eq(auth.extra.raw_info.phone)
         expect(user.social_security_number).to eq(auth.extra.raw_info.ssn)
       end
     end

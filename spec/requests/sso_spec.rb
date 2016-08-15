@@ -39,7 +39,7 @@ describe 'SSO' do
       saml_response = OneLogin::RubySaml::Response.new(saml_idp_resp)
       asserted_attributes = saml_response.attributes.attributes.keys.map(&:to_sym)
       expect(asserted_attributes).to match_array(
-        [:uid, :email, :mobile, :first_name, :last_name, :ssn]
+        [:uid, :email, :phone, :first_name, :last_name, :ssn]
       )
 
       post '/auth/saml/callback', SAMLResponse: saml_idp_resp
