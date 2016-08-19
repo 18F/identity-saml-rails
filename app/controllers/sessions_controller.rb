@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    user = User.from_omniauth(request.env['omniauth.auth'])
+    user = find_user_from_auth(request.env['omniauth.auth'])
+    user = User.from_omniauth(request.env['omniauth.auth']) unless user
     session[:user_id] = user.id
 
     redirect_to(
@@ -77,7 +78,7 @@ class SessionsController < ApplicationController
     if logout_request.is_valid?
       redirect_to_logout(logout_request)
     else
-      render_logout_error
+      render_logout_error(logout_request)
     end
   end
 
@@ -102,5 +103,22 @@ class SessionsController < ApplicationController
   def sign_out
     # if this were a Devise controller, sign_out is built-in
     # so this is just an example no-op
+  end
+
+  def find_user_from_auth(auth)
+    user = User.find_by uid: auth.uid
+    unless user
+      auth_info = auth.info
+      user = User.where("first_name = :first_name AND last_name = :last_name AND social_security_number = :ssn",
+                        {first_name: auth_info.first_name, last_name: auth_info.last_name, ssn: auth.extra.raw_info[:ssn]})
+      case user.length
+        when 0
+          return nil
+        when 1
+          return user.first
+        else
+          raise "too many matching records!"
+      end
+    end
   end
 end
