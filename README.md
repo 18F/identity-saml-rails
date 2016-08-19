@@ -44,8 +44,8 @@ May also function as reference Service Provider implementation.
 
 ### Generating a new key + self-signed cert
 
-    openssl req -newkey rsa:2048 -nodes -keyout config/server.key \
-      -x509 -out config/server.crt -config config/openssl.conf
+    openssl req -days 3650 -newkey rsa:2048 -nodes -keyout keys/saml_test_sp.key \
+      -x509 -out certs/sp/demo_sp.crt -config config/openssl.conf
 
 
 ## Public domain
