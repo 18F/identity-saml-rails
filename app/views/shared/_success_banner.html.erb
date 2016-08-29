@@ -4,7 +4,7 @@
       <button type="submit" class="btn p0 h6 white">Log out</button>
     </form>
   <% end %>
-  <span class="bold caps">Success!</span>
+  <span class="bold">Success!</span>
   <% if current_user %>
     <span>Email: <strong><%= current_user.email %></strong></span>
     <% unless current_user.first_name.nil? %>

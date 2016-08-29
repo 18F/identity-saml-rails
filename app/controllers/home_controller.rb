@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    session[:agency] = current_agency
+    session[:agency] = params[:agency]
     render_agency
   end
 

@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IdentitySp</title>
+  <title>login.gov :: Service Provider</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class="bg-darken-1">
-<%- unless notice.nil? %>
-  <div class="p2 bg-green white"><%= notice %></div>
-<%- end %>
-<%- unless alert.nil? %>
-  <div class="p2 bg-red white"><%= alert %></div>
-<%- end %>
-
-<%= yield %>
-
+  <%- unless notice.nil? %><div class="px2 py1 h5 bg-navy white"><%= notice %></div><%- end %>
+  <%- unless alert.nil? %><div class="px2 py1 h5 bg-red white"><%= alert %></div><%- end %>
+  <%= yield %>
 </body>
 </html>
