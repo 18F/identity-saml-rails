@@ -12,6 +12,26 @@ module OmniAuthSpecHelper
     )
   end
 
+  def self.valid_saml_loa3_login_setup(email_address, uuid, first_name, last_name, ssn)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock(
+      :saml,
+      provider: 'saml',
+      uid: uuid,
+      info: {
+        email: email_address,
+        uuid: uuid,
+        first_name: first_name,
+        last_name: last_name
+      },
+      extra: {
+        raw_info: {
+          ssn: ssn
+        }
+      }
+    )
+  end
+
   def self.invalid_credentials
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:saml] = :invalid_credentials

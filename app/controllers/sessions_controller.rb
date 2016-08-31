@@ -2,8 +2,14 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    user = find_user_from_auth(request.env['omniauth.auth'])
-    user = User.from_omniauth(request.env['omniauth.auth']) unless user
+    auth = request.env['omniauth.auth']
+    a = auth.uid
+    user = find_user_from_auth(auth)
+    if user
+      user.update(uid: auth.uid)
+    else
+      user = User.from_omniauth(auth)
+    end
     session[:user_id] = user.id
 
     redirect_to(
@@ -108,17 +114,23 @@ class SessionsController < ApplicationController
   def find_user_from_auth(auth)
     user = User.find_by uid: auth.uid
     unless user
-      auth_info = auth.info
-      user = User.where("first_name = :first_name AND last_name = :last_name AND social_security_number = :ssn",
-                        {first_name: auth_info.first_name, last_name: auth_info.last_name, ssn: auth.extra.raw_info[:ssn]})
-      case user.length
-        when 0
-          return nil
-        when 1
-          return user.first
-        else
-          raise "too many matching records!"
+      user = User.find_by_email(auth.email)
+      unless user
+        return nil unless auth.key?('extra')
+        auth_info = auth.info
+        user = User.where("first_name = :first_name AND last_name = :last_name AND social_security_number = :ssn",
+                          {first_name: auth_info.first_name, last_name: auth_info.last_name, ssn: auth.extra.raw_info[:ssn]})
+        case user.length
+          when 0
+            return nil
+          when 1
+            return user.first
+          else
+            #We should probably respond more constructively here
+            raise "too many matching records!"
+        end
       end
     end
+    user
   end
 end
