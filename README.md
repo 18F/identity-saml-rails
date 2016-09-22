@@ -11,7 +11,7 @@ May also function as reference Service Provider implementation.
 
 ### Setup
 
-    $ bundle install
+    $ make setup
 
 ### Setup (on cloud.gov)
     $ cf target -o consumer-identity -s [dev or demo]
