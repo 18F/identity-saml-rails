@@ -4,7 +4,7 @@ SAML_SETTINGS = {
   idp_sso_target_url: Rails.application.secrets.idp_sso_url,
   idp_slo_target_url: Rails.application.secrets.idp_slo_url,
   idp_cert_fingerprint: Rails.application.secrets.idp_cert_fingerprint,
-  name_identifier_format: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+  name_identifier_format: 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
   authn_context: 'http://idmanagement.gov/ns/assurance/loa/1',
   allowed_clock_drift: 60,
   certificate: File.read("#{Rails.root}/certs/sp/demo_sp.crt"),
