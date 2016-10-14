@@ -11,19 +11,10 @@ set :keep_releases, 5
 set :linked_files, %w(config/database.yml
                       config/secrets.yml)
 set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system)
+set :passenger_roles, [:app]
+set :passenger_restart_wait, 5
+set :passenger_restart_runner, :sequence
 set :rails_env, :production
 set :repo_url, 'https://github.com/18F/identity-sp-rails.git'
 set :ssh_options, forward_agent: false, user: 'ubuntu'
 set :tmp_dir, '/srv/sp-rails'
-
-#########
-# TASKS
-#########
-namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-end

@@ -63,6 +63,8 @@ GEM
       capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-harrow (0.5.3)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -236,6 +238,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capistrano
+  capistrano-passenger
   capistrano-rails
   codeclimate-test-reporter
   omniauth-saml
@@ -257,4 +260,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.4
