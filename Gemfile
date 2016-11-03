@@ -20,6 +20,7 @@ gem 'ruby-saml', git: 'https://github.com/onelogin/ruby-saml.git', branch: 'mast
 
 group :deploy do
   gem 'capistrano' # , '~> 3.4'
+  gem 'capistrano-passenger'
   gem 'capistrano-rails' # , '~> 1.1', require: false
 end
 
