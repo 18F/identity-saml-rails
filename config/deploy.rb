@@ -26,6 +26,7 @@ namespace :deploy do
   desc 'Write deploy information to deploy.json'
   task :deploy_json do
     on roles(:web), in: :parallel do
+      require 'json'
       require 'stringio'
 
       within current_path do
