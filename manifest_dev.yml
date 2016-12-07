@@ -1,9 +1,12 @@
 ---
 applications:
 - name: identity-sp-rails-dev
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
   memory: 256M
   instances: 1
   host: identity-sp-rails-dev
   domain: apps.cloud.gov
   services:
   - id-sp-rails_production-dev
+  env:
+    SAML_ENV: 'dev'

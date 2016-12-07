@@ -3,6 +3,6 @@ applications:
 - name: task-runner
   memory: 256M
   services:
-  - id-sp-rails_production-demo
+  - id-sp-rails_production-dev
   no-route: true
   command: (rake db:setup && echo SUCCESS || echo FAIL) && sleep infinity

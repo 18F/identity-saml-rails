@@ -13,22 +13,6 @@ May also function as reference Service Provider implementation.
 
     $ make setup
 
-### Setup (on cloud.gov)
-    $ cf target -o consumer-identity -s [dev or demo]
-    $ cf create-service rds shared-psql id-sp-rails_production-[dev or demo]
-    $ cf bind-service identity-sp-rails-[dev or demo] mid-sp-rails_production-[dev or demo]
-    $ cf restage identity-sp-rails-[dev or demo]
-
-    then
-    $ cf push -f task_manifest.yml (file needs to be edited for -dev)
-    $ cf delete task-runner
-
-    (see, for reference https://docs.cloud.gov/apps/databases/ and https://docs.cloud.gov/getting-started/one-off-tasks/)
-
-### Deploy to login.gov lower envs
-    $ cap [demo, dev, or tf] deploy
-    $ cap -T # for a list of available capistrano tasks
-
 ### Testing
 
     $ make test
@@ -37,16 +21,22 @@ May also function as reference Service Provider implementation.
 
     $ SAML_ENV=local make run
 
-### Running (on cloud.gov)
 
-    $ bin/cloud_deploy [dev or demo]
-    (Note: You'll need to be logged into cloud.gov first)
+### Deploy to your cloud.gov sandbox
+    $ cf target -o sandbox
+    $ cf create-service rds shared-psql id-sp-rails_production-dev
+    $ cf push -f manifest_dev.yml
+
+    (see, for reference https://docs.cloud.gov/apps/databases/ and https://docs.cloud.gov/getting-started/one-off-tasks/)
+
+### Deploy to login.gov lower envs
+    $ cap [demo, dev, or tf] deploy
+    $ cap -T # for a list of available capistrano tasks
 
 ### Generating a new key + self-signed cert
 
     openssl req -days 3650 -newkey rsa:2048 -nodes -keyout keys/saml_test_sp.key \
       -x509 -out certs/sp/demo_sp.crt -config config/openssl.conf
-
 
 ## Public domain
 
