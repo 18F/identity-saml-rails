@@ -14,9 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks'
 
 gem 'omniauth-saml'
-
-# unreleased feature via: https://github.com/onelogin/ruby-saml/pull/345
-gem 'ruby-saml', git: 'https://github.com/onelogin/ruby-saml.git', branch: 'master'
+gem 'ruby-saml'
 
 group :deploy do
   gem 'capistrano' # , '~> 3.4'
@@ -28,7 +26,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.4'
-  gem 'saml_idp', '~> 0.4.0'
+  gem 'saml_idp', git: 'https://github.com/18F/saml_idp.git', branch: 'master'
 end
 
 group :development do
