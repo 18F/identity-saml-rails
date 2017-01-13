@@ -7,13 +7,13 @@ class FakeSamlIdp < Sinatra::Base
 
   ASSERTED_ATTRIBUTES_URI_PATTERN = 'http://idmanagement.gov/ns/requested_attributes?ReqAttr='.freeze
 
-  get '/saml/auth' do
+  get '/api/saml/auth' do
     build_configs
     validate_saml_request
     encode_response(user)
   end
 
-  get '/saml/logout' do
+  get '/api/saml/logout' do
     build_configs
     if params[:SAMLRequest]
       validate_saml_request
@@ -48,8 +48,8 @@ class FakeSamlIdp < Sinatra::Base
       config.secret_key = File.read("#{Rails.root}/keys/saml_test_sp.key")
 
       config.base_saml_location = "#{idp_base_url}/saml"
-      config.single_service_post_location = "#{idp_base_url}/saml/auth"
-      config.single_logout_service_post_location = "#{idp_base_url}/saml/logout"
+      config.single_service_post_location = "#{idp_base_url}/api/saml/auth"
+      config.single_logout_service_post_location = "#{idp_base_url}/api/saml/logout"
 
       config.name_id.formats = {
         persistent: -> (principal) { principal.uid },

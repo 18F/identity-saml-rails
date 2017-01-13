@@ -10,7 +10,7 @@ describe 'SSO' do
       expect(User.count).to eq 0
 
       get '/auth/saml'
-      expect(response).to redirect_to(%r{idp\.example\.com\/saml\/auth})
+      expect(response).to redirect_to(%r{idp\.example\.com\/api\/saml\/auth})
 
       idp_uri = URI(response.headers['Location'])
       saml_idp_resp = Net::HTTP.get(idp_uri)
@@ -31,7 +31,7 @@ describe 'SSO' do
       expect(User.count).to eq 0
 
       get '/auth/saml?loa=3'
-      expect(response).to redirect_to(%r{idp\.example\.com\/saml\/auth})
+      expect(response).to redirect_to(%r{idp\.example\.com\/api\/saml\/auth})
 
       idp_uri = URI(response.headers['Location'])
       saml_idp_resp = Net::HTTP.get(idp_uri)
