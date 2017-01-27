@@ -17,7 +17,7 @@ set :passenger_restart_runner, :sequence
 set :rails_env, :production
 set :repo_url, 'https://github.com/18F/identity-sp-rails.git'
 set :ssh_options, forward_agent: false, user: 'ubuntu'
-set :tmp_dir, '/srv/sp-rails'
+set :tmp_dir, '/tmp'
 
 #########
 # TASKS
@@ -49,5 +49,13 @@ namespace :deploy do
     end
   end
 
+  desc 'Modify permissions on /srv/sp-rails'
+  task :mod_perms do
+    on roles(:web), in: :parallel do
+      execute :sudo, :chown, '-R', 'ubuntu:nogroup', deploy_to
+    end
+  end
+
   after 'deploy:log_revision', :deploy_json
+  after :deploy, 'deploy:mod_perms'
 end
