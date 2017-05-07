@@ -5,13 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  if Rails.env.production?
-    http_basic_authenticate_with(
-      name: Rails.application.secrets.http_auth_username,
-      password: Rails.application.secrets.http_auth_password
-    )
-  end
-
   def current_user
     user_id = session[:user_id]
     User.find(user_id) if user_id
