@@ -54,6 +54,9 @@ GEM
     arel (6.0.3)
     ast (2.3.0)
     builder (3.2.2)
+    bummr (0.2.0)
+      rainbow
+      thor
     byebug (9.0.5)
     capistrano (3.6.0)
       airbrussh (>= 1.0.0)
@@ -226,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bummr
   byebug
   capistrano
   capistrano-passenger

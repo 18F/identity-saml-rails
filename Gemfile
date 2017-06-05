@@ -30,6 +30,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bummr', require: false
   gem 'rubocop'
 end
 
