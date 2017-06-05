@@ -8,9 +8,9 @@ set :bundle_without, 'deploy development doc test'
 set :deploy_to, '/srv/sp-rails'
 set :deploy_via, :remote_cache
 set :keep_releases, 5
-set :linked_files, %w(config/database.yml
-                      config/secrets.yml)
-set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system)
+set :linked_files, %w[config/database.yml
+                      config/secrets.yml]
+set :linked_dirs, %w[bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system]
 set :passenger_roles, [:app]
 set :passenger_restart_wait, 5
 set :passenger_restart_runner, :sequence

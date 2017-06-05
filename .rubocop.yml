@@ -16,6 +16,14 @@ Metrics/AbcSize:
   Exclude:
   - spec/**/*
 
+Metrics/BlockLength:
+  CountComments: false # count full line comments?
+  Enabled: true
+  Max: 25
+  Exclude:
+    - 'config/deploy.rb'
+    - 'spec/**/*'
+
 Metrics/ClassLength:
   Description: Avoid classes longer than 100 lines of code.
   Enabled: true
@@ -76,7 +84,7 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
 
-Style/DotPosition:
+Layout/DotPosition:
   Description: Checks the position of the dot in multi-line method calls.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains
   Enabled: true
@@ -84,6 +92,10 @@ Style/DotPosition:
   SupportedStyles:
   - leading
   - trailing
+
+Style/FileName:
+  Exclude:
+    - Capfile
 
 Style/FrozenStringLiteralComment:
   Description: >-

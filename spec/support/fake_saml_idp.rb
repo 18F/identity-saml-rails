@@ -52,8 +52,8 @@ class FakeSamlIdp < Sinatra::Base
       config.single_logout_service_post_location = "#{idp_base_url}/api/saml/logout"
 
       config.name_id.formats = {
-        persistent: -> (principal) { principal.uid },
-        email_address: -> (principal) { principal.email }
+        persistent: ->(principal) { principal.uid },
+        email_address: ->(principal) { principal.email }
       }
 
       config.service_provider.finder = lambda do |_issuer_or_entity_id|

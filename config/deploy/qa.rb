@@ -1,1 +1,1 @@
-server 'sp.qa.login.gov', roles: %w(web app db)
+server 'sp.qa.login.gov', roles: %w[web app db]
