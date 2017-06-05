@@ -31,6 +31,7 @@ end
 
 group :development do
   gem 'bummr', require: false
+  gem 'reek'
   gem 'rubocop'
 end
 

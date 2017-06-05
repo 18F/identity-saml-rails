@@ -6,3 +6,14 @@ IrresponsibleModule:
   enabled: false
 TooManyStatements:
   max_statements: 6
+
+'spec':
+  DuplicateMethodCall:
+    enabled: false
+  FeatureEnvy:
+    enabled: false
+  NestedIterators:
+    exclude:
+      - build_configs
+  TooManyStatements:
+    enabled: false
