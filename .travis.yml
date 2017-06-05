@@ -17,3 +17,7 @@ rvm:
 sudo: false
 script:
   - bundle exec rspec
+  - bundle exec codeclimate-test-reporter
+env:
+  global:
+    - COVERAGE=true
