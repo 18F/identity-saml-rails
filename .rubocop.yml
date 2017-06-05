@@ -6,6 +6,7 @@ AllCops:
     - 'bin/**/*'
     - 'db/schema.rb'
     - 'db/migrate/20160602162432_add_devise_to_users.rb'
+  TargetRubyVersion: 2.3
   UseCache: true
 
 Metrics/AbcSize:
@@ -15,6 +16,14 @@ Metrics/AbcSize:
   Max: 15
   Exclude:
   - spec/**/*
+
+Metrics/BlockLength:
+  CountComments: false # count full line comments?
+  Enabled: true
+  Max: 25
+  Exclude:
+    - 'config/deploy.rb'
+    - 'spec/**/*'
 
 Metrics/ClassLength:
   Description: Avoid classes longer than 100 lines of code.
@@ -76,7 +85,7 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
 
-Style/DotPosition:
+Layout/DotPosition:
   Description: Checks the position of the dot in multi-line method calls.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains
   Enabled: true
@@ -84,6 +93,10 @@ Style/DotPosition:
   SupportedStyles:
   - leading
   - trailing
+
+Style/FileName:
+  Exclude:
+    - Capfile
 
 Style/FrozenStringLiteralComment:
   Description: >-
@@ -96,6 +109,18 @@ Style/IfUnlessModifier:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier
   Enabled: true
   MaxLineLength: 100
+
+Style/PercentLiteralDelimiters:
+  # Specify the default preferred delimiter for all types with the 'default' key
+  # Override individual delimiters (even with default specified) by specifying
+  # an individual key
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'
 
 Style/StringLiterals:
   Description: Checks if uses of quotes match the configured preference.
