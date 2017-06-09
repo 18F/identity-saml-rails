@@ -1,5 +1,6 @@
 SAML_SETTINGS = {
   assertion_consumer_service_binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+  assertion_consumer_service_url: Rails.application.secrets.acs_url,
   issuer: Rails.application.secrets.saml_issuer,
   idp_sso_target_url: Rails.application.secrets.idp_sso_url,
   idp_slo_target_url: Rails.application.secrets.idp_slo_url,
