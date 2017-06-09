@@ -20,6 +20,20 @@ describe SessionsController do
         expect(response).to redirect_to success_url
         expect(flash[:notice]).to eq I18n.t('omniauth_callbacks.success')
       end
+
+      context 'when an account already exists' do
+        before do
+          User.find_or_create_by(email: 'email@example.com')
+        end
+
+        it 'successfully authenticates the user' do
+          configure_valid_omniauth_login
+          post :create, provider: :saml
+
+          expect(session[:user_id]).to eq User.last.id
+          expect(response).to redirect_to success_url
+        end
+      end
     end
   end
 end
