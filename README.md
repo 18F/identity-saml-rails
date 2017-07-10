@@ -1,6 +1,6 @@
 Identity-SP
 ===========
-[![Build Status](https://travis-ci.org/18F/identity-sp-rails.svg?branch=master)](https://travis-ci.org/18F/identity-sp-rails)
+[![CircleCI](https://circleci.com/gh/18F/identity-sp-rails.svg?style=svg)](https://circleci.com/gh/18F/identity-sp-rails)
 [![Code Climate](https://codeclimate.com/github/18F/identity-sp-rails/badges/gpa.svg)](https://codeclimate.com/github/18F/identity-sp-rails)
 [![Test Coverage](https://codeclimate.com/github/18F/identity-sp-rails/badges/coverage.svg)](https://codeclimate.com/github/18F/identity-sp-rails/coverage)
 [![security](https://hakiri.io/github/18F/identity-sp-rails/master.svg)](https://hakiri.io/github/18F/identity-sp-rails/master)
