@@ -10,6 +10,7 @@ dependencies:
   pre:
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
+    - cp .env.example .env
   override:
     - bundle install --deployment --jobs=3 --retry=3 --without deploy development doc
 test:
@@ -18,4 +19,4 @@ test:
     - bin/rake assets:precompile
     - ./cc-test-reporter before-build
   override:
-    - bundle exec rspec; ./cc-test-reporter after-build --exit-code $? 
+    - bundle exec rspec; ./cc-test-reporter after-build --exit-code $?

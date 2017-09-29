@@ -6,3 +6,4 @@
 .rspec
 .DS_store
 /db/*.sqlite3
+.env

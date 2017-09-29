@@ -20,6 +20,9 @@ Dir.chdir APP_ROOT do
   system "rm -f log/*"
   system "rm -rf tmp/cache"
 
+  puts "\n== Setting up config =="
+  system "cp .env.example .env"
+
   puts "\n== Restarting application server =="
   system "touch tmp/restart.txt"
 end

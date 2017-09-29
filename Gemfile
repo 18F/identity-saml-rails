@@ -1,3 +1,5 @@
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
+
 source 'https://rubygems.org'
 
 ruby '~> 2.3.5'
@@ -13,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 # Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+gem 'dotenv-rails'
+gem 'identity-hostdata', github: '18F/identity-hostdata', branch: 'master'
 gem 'omniauth-saml'
 gem 'ruby-saml'
 
@@ -37,6 +41,7 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', require: nil
+  gem 'fakefs', require: 'fakefs/safe'
   gem 'sinatra'
   gem 'webmock'
 end

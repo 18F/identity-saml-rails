@@ -5,10 +5,18 @@ postgresql: &postgresql
 
 defaults: &defaults
   pool: 5
-  timeout: 5000
   host: localhost
-
   <<: *postgresql
+
+  # Timeout settings
+  timeout: 5000
+  reconnect: true
+  connect_timeout: 2
+  keepalives_idle: 30
+  keepalives_interval: 10
+  keepalives_count: 2
+  checkout_timeout: 5
+  reaping_frequency: 10
 
 development:
   <<: *defaults
@@ -20,4 +28,9 @@ test:
 
 production:
   <<: *defaults
-  database: id-sp-rails_production-<%= ENV['SAML_ENV'] %>
+  sslmode: verify-full
+  sslrootcert: '/usr/local/share/aws/rds-combined-ca-bundle.pem'
+  database: <%= ENV.fetch('DATABASE_NAME') %>
+  username: <%= ENV.fetch('DATABASE_USERNAME') %>
+  host: <%= ENV.fetch('DATABASE_HOST') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD') %>
