@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  if Rails.env.production?
+  if (! Rails.application.secrets.http_auth_username.nil?) && (! Rails.application.secrets.http_auth_password.nil?)
     http_basic_authenticate_with(
       name: Rails.application.secrets.http_auth_username,
       password: Rails.application.secrets.http_auth_password
