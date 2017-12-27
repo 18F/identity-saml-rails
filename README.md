@@ -9,6 +9,8 @@ Mock service provider (SP) app for validating IdP and IdV APIs.
 
 May also function as reference Service Provider implementation.
 
+These instructions assume [`identity-idp`](https://github.com/18F/identity-idp) is also running locally at `http://localhost:3000`. This sample sp is configured to run on `http://localhost:3003`.
+
 ### Setup
 
     $ make setup
