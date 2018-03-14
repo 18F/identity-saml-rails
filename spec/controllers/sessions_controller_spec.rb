@@ -14,7 +14,7 @@ describe SessionsController do
     context 'when the authorization is valid' do
       it 'signs the user in and redirects to dashboard with flash notice' do
         configure_valid_omniauth_login
-        post :create, provider: :saml
+        post :create, params: { provider: :saml }
 
         expect(session[:user_id]).to eq User.last.id
         expect(response).to redirect_to success_url

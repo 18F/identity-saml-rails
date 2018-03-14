@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
         'http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn'
       ]
     end
-    render text: 'Omniauth setup phase.', status: 404
+    render plain: 'Omniauth setup phase.', status: 404
   end
 
   private
@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
   end
 
   def failure_message
-    env['omniauth.error.type'].to_s.humanize
+    request.env['omniauth.error.type'].to_s.humanize
   end
 
   def validate_slo_response

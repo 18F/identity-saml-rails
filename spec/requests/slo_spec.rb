@@ -9,7 +9,7 @@ describe 'SLO' do
     get '/auth/saml'
     idp_uri = URI(response.headers['Location'])
     saml_idp_resp = Net::HTTP.get(idp_uri)
-    post '/auth/saml/callback', SAMLResponse: saml_idp_resp
+    post '/auth/saml/callback', params: { SAMLResponse: saml_idp_resp }
   end
 
   describe 'IdP-initiated' do
@@ -19,7 +19,7 @@ describe 'SLO' do
       saml_idp_resp = Net::HTTP.get(idp_uri)
 
       # send the SAMLRequest to our logout endpoint
-      post '/auth/saml/logout', SAMLRequest: saml_idp_resp, RelayState: 'the_idp_session_id'
+      post '/auth/saml/logout', params: { SAMLRequest: saml_idp_resp, RelayState: 'the_idp_session_id' }
 
       # redirect to complete the sign-out at the IdP
       expect(response).to redirect_to(%r{idp.example.com/api/saml/logout})
@@ -41,7 +41,7 @@ describe 'SLO' do
       saml_idp_resp = Net::HTTP.get(idp_uri)
 
       # send the SAMLResponse back to our SP
-      post '/auth/saml/logout', SAMLResponse: saml_idp_resp
+      post '/auth/saml/logout', params: { SAMLResponse: saml_idp_resp }
 
       # expect we are logged out, on our site
       expect(response).to redirect_to(root_url)
