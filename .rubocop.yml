@@ -6,7 +6,7 @@ AllCops:
     - 'bin/**/*'
     - 'db/schema.rb'
     - 'db/migrate/20160602162432_add_devise_to_users.rb'
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
   UseCache: true
 
 Metrics/AbcSize:
