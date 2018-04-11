@@ -19,7 +19,7 @@ describe 'SSO' do
       asserted_attributes = saml_response.attributes.attributes.keys.map(&:to_sym)
       expect(asserted_attributes).to match_array(%i[uid email])
 
-      post '/auth/saml/callback', SAMLResponse: saml_idp_resp
+      post '/auth/saml/callback', params: { SAMLResponse: saml_idp_resp }
 
       expect(response).to redirect_to('http://www.example.com/success')
       expect(User.count).to eq 1
@@ -42,7 +42,7 @@ describe 'SSO' do
         %i[uid email phone first_name last_name ssn]
       )
 
-      post '/auth/saml/callback', SAMLResponse: saml_idp_resp
+      post '/auth/saml/callback', params: { SAMLResponse: saml_idp_resp }
 
       expect(response).to redirect_to('http://www.example.com/success')
       expect(User.count).to eq 1
