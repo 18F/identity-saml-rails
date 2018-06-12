@@ -37,7 +37,7 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', require: nil
-  gem 'sinatra'
+  gem 'sinatra', '>= 2.0.2'
   gem 'webmock'
 end
 
