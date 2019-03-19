@@ -1,0 +1,87 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/18F/identity-saml-rails
+    parallelism: 1
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      CC_TEST_REPORTER_ID: faecd27e9aed532634b3f4d3e251542d7de9457cfca96a94208a63270ef9b42e
+      COVERAGE: true
+      RAILS_ENV: test
+    docker:
+      # Specify the Ruby version you desire here
+      - image: circleci/ruby:2.3.5
+
+    steps:
+      - checkout
+      # Prepare for artifact and test results  collection equivalent to how it was done on 1.0.
+      # In many cases you can simplify this from what is generated here.
+      # 'See docs on artifact collection here https://circleci.com/docs/2.0/artifacts/'
+      - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+
+      - restore-cache:
+          key: identity-saml-rails-{{ checksum "Gemfile.lock" }}
+
+      # This is based on your 1.0 configuration file or project settings
+      - run:
+          name: Fetch codeclimate test reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
+      - run:
+          name: Install dependencies
+          command: |
+            gem install bundler
+            bundle install --deployment --jobs=4 --retry=3 --without deploy development doc --path vendor/bundle
+
+      # Store bundle cache
+      - save-cache:
+          key: identity-saml-rails-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # The following line was run implicitly in your 1.0 builds based on what CircleCI inferred about the structure of your project. In 2.0 you need to be explicit about which commands should be run. In some cases you can discard inferred commands if they are not relevant to your project.
+      - run: |-
+          mkdir -p config && echo 'test:
+            pool: 5
+            timeout: 5000
+            adapter: postgresql
+            encoding: utf8
+            database: circle_ruby_test
+            username: ubuntu
+            host: localhost
+          ' > config/database.yml
+      - run:
+          command: bundle exec rake db:create db:schema:load --trace
+          environment:
+            RAILS_ENV: test
+            RACK_ENV: test
+
+      # Test
+      # This is based on your 1.0 configuration file or project settings
+      # Set up DB and assets
+      - run:
+          name: Pre-build steps
+          command: |
+            bin/rake db:setup --trace
+            bin/rake assets:precompile
+            ./cc-test-reporter before-build
+
+      # This is based on your 1.0 configuration file or project settings
+      - run:
+          name: Run Tests
+          command: |
+            bundle exec rspec; ./cc-test-reporter after-build --exit-code $?
+
+      # Teardown
+      #   If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
+      # Save test results
+      - store_test_results:
+          path: /tmp/circleci-test-results
+      # Save artifacts
+      - store_artifacts:
+          path: /tmp/circleci-artifacts
+      - store_artifacts:
+          path: /tmp/circleci-test-results
