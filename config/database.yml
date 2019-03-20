@@ -6,7 +6,8 @@ postgresql: &postgresql
 defaults: &defaults
   pool: 5
   timeout: 5000
-  host: localhost
+  host: <%= ENV.fetch('DOCKER_DB_HOST', 'localhost') %>
+  username: <%= ENV['DOCKER_DB_USER'] %>
 
   <<: *postgresql
 
