@@ -4,10 +4,10 @@
     <%= form_tag('auth/saml', method: :get) do %>
       <div class="mb1">
         <%= label_tag 'loa_1' do %>
-          <%= radio_button_tag 'loa', '1', !is_ial_2 %> Identity Level of Assurance 1
+          <%= radio_button_tag 'loa', '1', !is_ial_2 %> Identity Assurance Level 1
         <% end %>
         <%= label_tag 'loa_3' do %>
-          <%= radio_button_tag 'loa', '2', is_ial_2 %> Identity Level of Assurance 2
+          <%= radio_button_tag 'loa', '2', is_ial_2 %> Identity Assurance Level 2
         <% end %>
       </div>
       <button type="submit" class="btn btn-outline bg-white navy">
