@@ -1,6 +1,6 @@
 <div class="container py2">
   <div class="mb1 right-align">
-    <% is_ial_2 = params[:ial] == '2' %>
+    <% is_ial_2 = params[:loa] == '2' %>
     <%= form_tag('auth/saml', method: :get) do %>
       <div class="mb1">
         <%= label_tag 'loa_1' do %>

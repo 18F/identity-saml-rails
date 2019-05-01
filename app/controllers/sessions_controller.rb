@@ -27,8 +27,8 @@ class SessionsController < ApplicationController
   end
 
   def setup
-    if params.key?(:ial)
-      level = set_level(params[:ial])
+    if params.key?(:loa)
+      level = set_level(params[:loa])
       request.env['omniauth.strategy'].options[:authn_context] = [
         "http://idmanagement.gov/ns/assurance/loa/#{level}",
         'http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn'
