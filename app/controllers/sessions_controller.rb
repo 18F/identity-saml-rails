@@ -27,9 +27,10 @@ class SessionsController < ApplicationController
   end
 
   def setup
-    if params.key?(:loa)
+    if params.key?(:ial)
+      level = set_level(params[:ial])
       request.env['omniauth.strategy'].options[:authn_context] = [
-        "http://idmanagement.gov/ns/assurance/loa/#{params[:loa]}",
+        "http://idmanagement.gov/ns/assurance/loa/#{level}",
         'http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn'
       ]
     end
@@ -37,6 +38,11 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def set_level(level_param)
+    return level_param unless level_param == '2'
+    return '3'
+  end
 
   def saml_settings
     @_saml_settings ||= OneLogin::RubySaml::Settings.new(SAML_SETTINGS)
