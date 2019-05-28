@@ -18,7 +18,7 @@ RSpec.describe HomeController, type: :controller do
     end
 
     context 'with the ial param set to 2' do
-      it 'renders a link for an ial 1 sign in' do
+      it 'renders a link for an ial 2 sign in' do
         get :index, params: { ial: '2' }
 
         expect(response.body).to include('/auth/saml?ial=2')
