@@ -1,13 +1,13 @@
 <div class="container py2">
   <div class="mb1 right-align">
-    <% is_ial_2 = params[:loa] == '2' %>
+    <% is_ial_2 = params[:ial] == '2' %>
     <%= form_tag('auth/saml', method: :get) do %>
       <div class="mb1">
-        <%= label_tag 'loa_1' do %>
-          <%= radio_button_tag 'loa', '1', !is_ial_2 %> Identity Assurance Level 1
+        <%= label_tag 'ial_1' do %>
+          <%= radio_button_tag 'ial', '1', !is_ial_2 %> IAL1
         <% end %>
-        <%= label_tag 'loa_3' do %>
-          <%= radio_button_tag 'loa', '2', is_ial_2 %> Identity Assurance Level 2
+        <%= label_tag 'ial_2' do %>
+          <%= radio_button_tag 'ial', '2', is_ial_2 %> IAL2
         <% end %>
       </div>
       <button type="submit" class="btn btn-outline bg-white navy">

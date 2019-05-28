@@ -27,10 +27,9 @@ class SessionsController < ApplicationController
   end
 
   def setup
-    if params.key?(:loa)
-      level = set_level(params[:loa])
+    if authn_context_loa_level.present?
       request.env['omniauth.strategy'].options[:authn_context] = [
-        "http://idmanagement.gov/ns/assurance/loa/#{level}",
+        "http://idmanagement.gov/ns/assurance/loa/#{authn_context_loa_level}",
         'http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn'
       ]
     end
@@ -39,9 +38,14 @@ class SessionsController < ApplicationController
 
   private
 
-  def set_level(level_param)
-    return level_param unless level_param == '2'
-    return '3'
+  def authn_context_loa_level
+    return unless params.key?(:ial)
+    case params[:ial]
+    when '1'
+      1
+    when '2'
+      3
+    end
   end
 
   def saml_settings

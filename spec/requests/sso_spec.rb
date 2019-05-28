@@ -30,7 +30,7 @@ describe 'SSO' do
     it 'returns asserted attributes' do
       expect(User.count).to eq 0
 
-      get '/auth/saml?loa=2'
+      get '/auth/saml?ial=2'
       expect(response).to redirect_to(%r{idp\.example\.com\/api\/saml\/auth})
 
       idp_uri = URI(response.headers['Location'])
