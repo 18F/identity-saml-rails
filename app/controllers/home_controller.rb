@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @omniauth_request_url = build_omniauth_request_url
     session[:agency] = params[:agency]
     render_agency
   end
@@ -13,6 +14,21 @@ class HomeController < ApplicationController
   end
 
   private
+
+  def build_omniauth_request_url
+    uri = URI.parse('/auth/saml')
+    uri.query = { ial: ial }.to_query
+    uri.to_s
+  end
+
+  def ial
+    case params[:ial].to_i
+    when 2
+      2
+    else
+      1
+    end
+  end
 
   def render_agency
     return unless current_agency
