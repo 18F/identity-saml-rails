@@ -59,7 +59,7 @@ describe 'Default SP landing page' do
         '<a href="?ial=2"><span class="text-underline">IAL2</span></a>'
       )
       expect(response.body).to include(
-        '<a href="?ial=2"><span class="">IAL2</span></a>'
+        '<a href="?ial=1"><span class="">IAL1</span></a>'
       )
     end
   end
