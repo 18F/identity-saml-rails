@@ -8,28 +8,6 @@ describe 'Default SP landing page' do
       expect(response.status).to eq 200
     end
 
-    it 'renders links for IAL1 and IAL2' do
-      get '/'
-
-      expect(response.body).to include(
-        '?ial=1'
-      )
-      expect(response.body).to include(
-        '?ial=2'
-      )
-    end
-
-    it 'renders links for IAL1 and IAL2' do
-      get '/'
-
-      expect(response.body).to include(
-        '?ial=1'
-      )
-      expect(response.body).to include(
-        '?ial=2'
-      )
-    end
-
     it 'underlines IAL1 link by default' do
       get '/'
 
