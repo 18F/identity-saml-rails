@@ -5,7 +5,7 @@ describe 'SSO' do
     OmniAuth.config.test_mode = false
   end
 
-  context 'LOA1' do
+  context 'IAL1' do
     it 'uses external SAML IdP' do
       expect(User.count).to eq 0
 
@@ -26,11 +26,11 @@ describe 'SSO' do
     end
   end
 
-  context 'LOA3' do
+  context 'IAL2' do
     it 'returns asserted attributes' do
       expect(User.count).to eq 0
 
-      get '/auth/saml?loa=3'
+      get '/auth/saml?ial=2'
       expect(response).to redirect_to(%r{idp\.example\.com\/api\/saml\/auth})
 
       idp_uri = URI(response.headers['Location'])

@@ -13,4 +13,6 @@
  *= require_tree .
  *= require_self
  *= require 'basscss.min.css'
+ *= require 'style.min.css'
+ *= require 'sign-in.css'
  */

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>login.gov :: Service Provider</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="bg-darken-1">
-  <%- unless notice.nil? %><div class="px2 py1 h5 bg-navy white"><%= notice %></div><%- end %>
-  <%- unless alert.nil? %><div class="px2 py1 h5 bg-red white"><%= alert %></div><%- end %>
-  <%= yield %>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>login.gov :: Service Provider</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%- unless notice.nil? %><div class="px2 py1 h5 bg-navy white"><%= notice %></div><%- end %>
+    <%- unless alert.nil? %><div class="px2 py1 h5 bg-red white"><%= alert %></div><%- end %>
+    <%== yield %>
+    <%= javascript_include_tag 'application', media: 'all' %>
+  </body>
 </html>
