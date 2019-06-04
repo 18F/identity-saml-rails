@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   def setup
     if params.key?(:ial)
       loa = 1
-      loa = 3 if params[:ial] == 2
+      loa = 3 if params[:ial] == '2'
       request.env['omniauth.strategy'].options[:authn_context] = [
         "http://idmanagement.gov/ns/assurance/loa/#{loa}",
         'http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn'
