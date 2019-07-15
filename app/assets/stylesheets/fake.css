@@ -1,0 +1,28 @@
+.align-bottom {
+    vertical-align: bottom;
+}
+.bg-maroon {
+  background-color: #85144b;
+}
+.bg-navy {
+    background-color: #112e51;
+}
+.center {
+    text-align: center;
+}
+.fs-12p {
+    font-size: 12px;
+}
+.line-height-1 {
+    line-height: 1;
+}
+.mr1 {
+    margin-right: 0.5rem;
+}
+.py1 {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+.white {
+    color: #ffffff;
+}
