@@ -9,8 +9,6 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%- unless notice.nil? %><div class="px2 py1 h5 bg-navy white"><%= notice %></div><%- end %>
-    <%- unless alert.nil? %><div class="px2 py1 h5 bg-red white"><%= alert %></div><%- end %>
     <%== yield %>
     <%= javascript_include_tag 'application', media: 'all' %>
   </body>
