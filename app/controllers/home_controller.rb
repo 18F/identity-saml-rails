@@ -15,9 +15,12 @@ class HomeController < ApplicationController
   private
 
   def render_agency
-    return unless current_agency
-    template = "agency/#{current_agency}/#{action_name}"
-    try_render_template(template)
+    if current_agency
+      template = "agency/#{current_agency}/#{action_name}"
+      try_render_template(template)
+    else
+      render :index
+    end
   end
 
   def try_render_template(template)

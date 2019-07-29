@@ -52,6 +52,7 @@ class SessionsController < ApplicationController
     slo_response = idp_logout_response
     if slo_response.validate
       flash[:notice] = t('omniauth_callbacks.logout_ok')
+      session[:user_id] = nil
       redirect_to root_url
     else
       flash[:alert] = t('omniauth_callbacks.logout_fail')
