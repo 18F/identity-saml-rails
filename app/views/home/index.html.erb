@@ -82,15 +82,21 @@
     <div class="grid-container">
       <div class="usa-hero__callout">
         <% if current_user %>
-          <h1 class="usa-hero__heading"><span class="usa-hero__heading--alt">
-            Welcome back!</span>Wasn't it easy to log in?
+          <h1 class="usa-hero__heading">
+            <span class="usa-hero__heading--alt">
+              Welcome back!
+            </span>
+            You are logged in
           </h1>
-          <p>You can log out by clicking on 'Log out' above.</p>
+          <p>When finished, use the previous 'Log out' link to sign out.</p>
         <% else %>
-          <h1 class="usa-hero__heading"><span class="usa-hero__heading--alt">
-            Get started:</span>It's easy to create your account
+          <h1 class="usa-hero__heading">
+            <span class="usa-hero__heading--alt">
+              Let's get started!
+            </span>
+            It's easy to make an account
           </h1>
-          <p>You can create your new account in just a few short minutes.</p>
+          <p>Setting it up takes just a few, short steps.</p>
           <a class="usa-button" href="javascript:void(0);">Create an account</a>
         <% end %>
       </div>
