@@ -26,3 +26,11 @@
 .white {
     color: #ffffff;
 }
+.source-code-link img {
+  float: left;
+}
+.source-code-link span {
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+}
