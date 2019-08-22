@@ -97,7 +97,12 @@
             It's easy to make an account
           </h1>
           <p>Setting it up takes just a few, short steps.</p>
-          <a class="usa-button" href="javascript:void(0);">Create an account</a>
+          <%= form_tag('auth/saml', method: :get) do %>
+            <%= hidden_field_tag 'ial', params[:ial] %>
+            <button type="submit" class="usa-button">
+              Create an account
+            </button>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -166,6 +171,7 @@
         <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
           <div class="mobile-lg:grid-col-auto">
             <h3 class="usa-footer__logo-heading">SAML Rails Example</h3>
+            <a class="usa-footer__primary-link" href="https://github.com/18F/identity-saml-rails">Get the Source Code</a>
           </div>
         </div>
         <div class="usa-footer__contact-links mobile-lg:grid-col-6">
