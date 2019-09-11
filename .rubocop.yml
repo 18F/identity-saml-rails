@@ -94,7 +94,7 @@ Layout/DotPosition:
   - leading
   - trailing
 
-Style/FileName:
+Naming:
   Exclude:
     - Capfile
 
@@ -108,7 +108,6 @@ Style/IfUnlessModifier:
   Description: Favor modifier if/unless usage when you have a single-line body.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier
   Enabled: true
-  MaxLineLength: 100
 
 Style/PercentLiteralDelimiters:
   # Specify the default preferred delimiter for all types with the 'default' key
