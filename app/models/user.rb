@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    current_user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.assign_from_auth(auth)
     end
+    current_user.sync_auth_email(auth.info.email)
+    current_user
   end
 
   def assign_from_auth(auth)
@@ -10,6 +12,10 @@ class User < ActiveRecord::Base
 
     assign_attrs(auth.info)
     extra_attributes_from_auth(auth) if auth.extra
+  end
+
+  def sync_auth_email(email)
+    update(email: email) unless self.email == email
   end
 
   private
