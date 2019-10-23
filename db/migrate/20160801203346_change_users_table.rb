@@ -1,5 +1,5 @@
 # rubocop:disable MethodLength
-class ChangeUsersTable < ActiveRecord::Migration
+class ChangeUsersTable < ActiveRecord::Migration[4.2]
   def change
     remove_column :users, :name, :string
     add_column :users, :first_name, :string
