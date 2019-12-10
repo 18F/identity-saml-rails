@@ -1,3 +1,11 @@
+# Warning:
+
+This sample SP has been retired.  It was used for early prototyping for integrations with login.gov and has not been maintained. It has confirmed vulnerabilities and should not be used for production itegrations.
+
+For maintained examples of SAML integrations with login.gov please refer to:
+
+- https://github.com/18F/identity-saml-sinatra
+
 Identity-SP
 ===========
 [![CircleCI](https://circleci.com/gh/18F/identity-sp-rails.svg?style=svg)](https://circleci.com/gh/18F/identity-sp-rails)
