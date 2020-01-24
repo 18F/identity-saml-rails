@@ -12,7 +12,7 @@ jobs:
 
     docker:
       # Specify the Ruby version you desire here
-      - image: circleci/ruby:2.3.5-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
 
       # We also need Postgres
       # CircleCI maintains a library of pre-built images
