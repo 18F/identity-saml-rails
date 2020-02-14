@@ -52,6 +52,20 @@ describe SessionsController do
       end
     end
 
+    context 'when using IALMAX authentication' do
+      it 'sets assurance level to IAL0' do
+        request.env['omniauth.strategy'] = instance_double('Strategy', :options => { saml: [] })
+        post :setup, params: { provider: :saml, ial: '0' }
+
+        authn_context = request.env['omniauth.strategy'].options[:authn_context]
+        expected_result = [
+            "http://idmanagement.gov/ns/assurance/ial/0",
+            "http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn"
+        ]
+        expect(authn_context).to eq(expected_result)
+      end
+    end
+
     context 'when IAL has not been selected' do
       it 'sets assurance level to LOA1' do
         request.env['omniauth.strategy'] = instance_double('Strategy', :options => { saml: [] })
