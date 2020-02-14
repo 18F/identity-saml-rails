@@ -30,8 +30,9 @@ class SessionsController < ApplicationController
     if params.key?(:ial)
       loa = 1
       loa = 3 if params[:ial] == '2'
+      loa = 0 if params[:ial] == '0'
       request.env['omniauth.strategy'].options[:authn_context] = [
-        "http://idmanagement.gov/ns/assurance/loa/#{loa}",
+        "http://idmanagement.gov/ns/assurance/#{loa.zero? ? 'ial' : 'loa'}/#{loa}",
         'http://idmanagement.gov/ns/requested_attributes?ReqAttr=email,phone,first_name,last_name,ssn'
       ]
     end
